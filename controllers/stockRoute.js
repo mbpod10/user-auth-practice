@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Stock = require("../models/Stock");
+//const User = require("../models/User");
 
 // all stocks
 router.get("/", (req, res) => {
@@ -52,4 +53,11 @@ router.get("/:id/information", (req, res) => {
       res.json(stocks);
     });
 });
+
+// router.get("/u/login", (req, res) => {
+//   User.find({}, (error, users) => {
+//     if (error) console.log(error);
+//     else res.json(users);
+//   });
+// });
 module.exports = router;
