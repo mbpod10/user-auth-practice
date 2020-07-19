@@ -24,8 +24,8 @@ const UserList = () => {
   return (
     <>
       <h1>User List</h1>
-
-      <Link to="/">Home</Link>
+      <Link to="/">Home</Link> <br /> <br />
+      <Link to="/user/register">Register</Link> <br />
       {userName}
     </>
   );

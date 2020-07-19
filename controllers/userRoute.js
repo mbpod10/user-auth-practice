@@ -25,13 +25,13 @@ router.post("/register", (req, res) => {
   let errors = [];
   //check fields
   if (!username || !email || !password) {
-    errors.push({ message: "Please fill in required fields" });
+    errors.push({ message: "Please Fill In Required Fields" });
   }
   if (password !== password2) {
-    errors.push({ message: "Passwords do not match" });
+    errors.push({ message: "Passwords Do Not Match" });
   }
   if (password.length < 6) {
-    errors.push({ message: "Password must contain at least 6 characters" });
+    errors.push({ message: "Password Must Contain At Least 6 Characters" });
   }
   if (errors.length > 0) {
     res.json(errors);
@@ -39,7 +39,7 @@ router.post("/register", (req, res) => {
     //Validation passed
     User.findOne({ email: email }).then((email) => {
       if (email) {
-        errors.push({ message: "Email matches with existing user!" });
+        errors.push({ message: "Email Matches With Existing User" });
         res.json(errors);
       } else {
         bcrypt.genSalt(10, (error, salt) =>

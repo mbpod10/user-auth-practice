@@ -27,7 +27,7 @@ const Home = () => {
       <h1>Welcome</h1>
       {stockName}
       <Link to="/user/register">Register</Link> <br />
-      <Link to="userList"> User List</Link>
+      <Link to="/userList"> User List</Link>
     </>
   );
 };
