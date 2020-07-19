@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const UserForm = ({ user, handleSubmit, handleChange, cancelPath }) => {
-  console.log("UserForm", user);
+const LoginForm = ({ user, handleSubmit, handleChange, cancelPath }) => {
+  console.log("LoginForm", user);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -14,14 +14,6 @@ const UserForm = ({ user, handleSubmit, handleChange, cancelPath }) => {
         onChange={handleChange}
       />
       <br />
-      <label>Email: </label>
-      <input
-        placeholder="email"
-        value={user.email}
-        name="email"
-        onChange={handleChange}
-      />
-      <br />
       <label>Password: </label>
       <input
         placeholder="password"
@@ -29,22 +21,14 @@ const UserForm = ({ user, handleSubmit, handleChange, cancelPath }) => {
         name="password"
         onChange={handleChange}
       />
+      <br /> <br />
+      <button type="submit">Submit</button> <br />
       <br />
-      <label>Confirm Password: </label>
-      <input
-        placeholder="confirm password"
-        value={user.password2}
-        name="password2"
-        onChange={handleChange}
-      />
-
-      <button type="submit">Submit</button>
       <Link to={cancelPath}>
-        {" "}
         <button>Cancel</button>
       </Link>
     </form>
   );
 };
 
-export default UserForm;
+export default LoginForm;
