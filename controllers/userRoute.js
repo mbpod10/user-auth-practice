@@ -57,26 +57,16 @@ router.post("/register", (req, res) => {
   }
 });
 
-// //Login Handle
-// router.post("/login", (req, res, next) => {
-//   passport.authenticate("local", {
-//     successRedirect: "/",
-//     failureRedirect: "/login",
-//   })(req, res, next);
-// });
-
 //Login Handle
-// router.post("/login", (req, res, next) => {
-//   passport.authenticate("local", {
-//     successRedirect: res.json({ message: "Successful Login" }),
-//     failureRedirect: res.json({ message: "Unuccessful Login" }),
-//   })(req, res, next);
-// });
 
 // router.post("/login", (req, res, next) => {
-//   passport.authenticate("local", {
-//     successRedirect: { message: "Successful Login" },
-//     failureRedirect: { message: "Unuccessful Login" },
+//   passport.authenticate("local", (error, user, info) => {
+//     if (error) {
+//       return res.json({
+//         message: error || "Something Went Wrong",
+//       });
+//     }
+//     return res.json(user);
 //   })(req, res, next);
 // });
 
@@ -87,8 +77,27 @@ router.post("/login", (req, res, next) => {
         message: error || "Something Went Wrong",
       });
     }
-    return res.json(user);
+    req.login(user, function (error) {
+      if (error) {
+        return res.json({
+          message: error || "Something Went Wrong",
+        });
+      }
+      user.isAuthenticated = true;
+      return res.json(user);
+    });
   })(req, res, next);
+});
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.json({ message: "Logged Out" });
+});
+
+router.get("/api", (req, res) => {
+  //const username = req.user.username;
+  console.log(req);
+  res.json({ message: "Hello" });
 });
 
 module.exports = router;

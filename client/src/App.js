@@ -7,6 +7,7 @@ import UserList from "./components/UserList";
 import Login from "./components/Login";
 
 function App(props) {
+  //console.log("App props -", props);
   return (
     <>
       <Switch>

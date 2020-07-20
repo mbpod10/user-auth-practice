@@ -31,8 +31,10 @@ const Login = (props) => {
       .then((res) => {
         setUser({ createdItem: res.data.user });
         props.history.push("/login");
-        console.log(res.data.message);
+        console.log(user);
+        //console.log(res.data.message);
         setError(res.data.message);
+
         //setError(res.data);
       })
       .catch(console.error);
@@ -41,6 +43,7 @@ const Login = (props) => {
   return (
     <>
       <h1>
+        {/* {errors.message} */}
         {errors.message === "Login Successful" ? (
           <Redirect to="/" />
         ) : (

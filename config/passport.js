@@ -41,11 +41,11 @@ module.exports = function (passport) {
     )
   );
   passport.serializeUser(function (user, done) {
-    done(null, user.id);
+    done(null, user.username);
   });
 
-  passport.deserializeUser(function (id, done) {
-    User.findById(id, function (err, user) {
+  passport.deserializeUser(function (username, done) {
+    User.findOne({ username }, function (err, user) {
       done(err, user);
     });
   });
