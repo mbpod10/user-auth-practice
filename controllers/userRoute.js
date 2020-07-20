@@ -73,10 +73,21 @@ router.post("/register", (req, res) => {
 //   })(req, res, next);
 // });
 
+// router.post("/login", (req, res, next) => {
+//   passport.authenticate("local", {
+//     successRedirect: { message: "Successful Login" },
+//     failureRedirect: { message: "Unuccessful Login" },
+//   })(req, res, next);
+// });
+
 router.post("/login", (req, res, next) => {
-  passport.authenticate("local", {
-    successRedirect: { message: "Successful Login" },
-    failureRedirect: { message: "Unuccessful Login" },
+  passport.authenticate("local", (error, user, info) => {
+    if (error) {
+      return res.status(500)({
+        message: error || "Something Went Wrong",
+      });
+    }
+    return res.json(user);
   })(req, res, next);
 });
 
