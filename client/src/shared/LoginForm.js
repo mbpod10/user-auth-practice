@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const LoginForm = ({ user, handleSubmit, handleChange, cancelPath }) => {
-  console.log("LoginForm", user);
+  //console.log("LoginForm", user);
 
   return (
     <form onSubmit={handleSubmit}>

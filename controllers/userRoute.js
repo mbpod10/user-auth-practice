@@ -83,7 +83,7 @@ router.post("/register", (req, res) => {
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (error, user, info) => {
     if (error) {
-      return res.status(500)({
+      return res.json({
         message: error || "Something Went Wrong",
       });
     }

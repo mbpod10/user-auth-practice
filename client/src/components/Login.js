@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import LoginForm from "../shared/LoginForm";
+import { Redirect } from "react-router-dom";
 
 const Login = (props) => {
-  console.log("Login", props);
+  // console.log("Login", props);
   const [errors, setError] = useState([]);
   const [input, setInput] = useState({
     username: "",
@@ -13,7 +14,7 @@ const Login = (props) => {
   const [user, setUser] = useState(null);
 
   const handleChange = (event) => {
-    console.log("event", event.target.name, event.target.value);
+    // console.log("event", event.target.name, event.target.value);
     setInput({
       ...input,
       [event.target.name]: event.target.value,
@@ -30,7 +31,8 @@ const Login = (props) => {
       .then((res) => {
         setUser({ createdItem: res.data.user });
         props.history.push("/login");
-        console.log(res);
+        console.log(res.data.message);
+        setError(res.data.message);
         //setError(res.data);
       })
       .catch(console.error);
@@ -38,6 +40,13 @@ const Login = (props) => {
 
   return (
     <>
+      <h1>
+        {errors.message === "Login Successful" ? (
+          <Redirect to="/" />
+        ) : (
+          errors.message
+        )}
+      </h1>
       <h1>Login</h1>
       <LoginForm
         user={input}
