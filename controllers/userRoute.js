@@ -20,7 +20,7 @@ router.delete("/", (req, res) => {
   });
 });
 
-//post new user
+// //post new user
 router.post("/register", (req, res) => {
   const { username, password, email, password2 } = req.body;
   let errors = [];
@@ -81,6 +81,43 @@ router.post("/register", (req, res) => {
             }
           });
         });
+      }
+    });
+  }
+});
+
+router.post("/register", (req, res) => {
+  const { username, password, email, password2 } = req.body;
+  let errors = [];
+  //check fields
+  if (!username || !email || !password) {
+    errors.push({ message: "Please Fill In Required Fields" });
+  }
+  if (password !== password2) {
+    errors.push({ message: "Passwords Do Not Match" });
+  }
+  if (password.length < 6) {
+    errors.push({ message: "Password Must Contain At Least 6 Characters" });
+  }
+  if (errors.length > 0) {
+    res.json(errors);
+  } else {
+    User.find({}, (error, emailLoop) => {
+      if (error) console.log(error);
+      else if (emailLoop.length < 1) {
+        bcrypt.genSalt(10, (error, salt) => {
+          bcrypt.hash(req.body.password, salt, (error, hash) => {
+            if (error) console.log(error);
+            req.body.password = hash;
+            bcrypt.hash(req.body.email, salt, (error, hash2) => {
+              if (error) console.log(error);
+              req.body.email = hash2;
+            });
+          });
+        });
+      } else if (emailLoop.length >= 1) {
+        let isEmail = false;
+        emailLoop.forEach((element, index) => {});
       }
     });
   }
