@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import UserForm from "../shared/UserForm";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 const Register = (props) => {
   console.log("ItemCreate props", props);
@@ -48,8 +49,8 @@ const Register = (props) => {
   return (
     <>
       <h1>Register</h1>
-      {/* {errorArray.length > 0 ? errorArray : success} */}
-      {errorArray}
+      {errors ? errorArray : <h1>{input.username}Created</h1>}
+      {/* {errorArray} */}
       <UserForm
         user={input}
         handleChange={handleChange}

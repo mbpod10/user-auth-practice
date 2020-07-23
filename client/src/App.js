@@ -5,6 +5,7 @@ import Register from "./components/Register";
 import Home from "./components/Home";
 import UserList from "./components/UserList";
 import Login from "./components/Login";
+import Profile from "./components/Profile";
 
 function App(props) {
   //console.log("App props -", props);
@@ -15,6 +16,7 @@ function App(props) {
           <Route exact path="/" component={Home} />
           <Route path="/userList" component={UserList} />
           <Route path="/login" component={Login} />
+          <Route path="/profile" component={Profile} />
           <Route path="/user/register" component={Register} />
         </div>
       </Switch>

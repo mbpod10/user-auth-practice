@@ -11,27 +11,20 @@ module.exports = function (passport) {
         User.findOne({ username: username })
           .then((user) => {
             if (!user) {
-              return done({ message: "User Not Found" }, false);
+              return done("User Not Found", false);
             }
 
             //Match Password
             bcrypt.compare(password, user.password, (error, isMatch) => {
               if (error) console.log(error);
               if (isMatch) {
-                return done(
-                  {
-                    message: "Login Successful",
-                  },
-                  user,
-                  console.log("Login Successful")
-                );
+                return done(null, user);
               } else {
                 return done(
-                  {
-                    message: "Incorrect Password",
-                  },
-                  false,
-                  console.log("Incorrect Password")
+                  "Incorrect Password",
+
+                  false
+                  //console.log("Incorrect Password")
                 );
               }
             });
